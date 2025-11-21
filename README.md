@@ -35,3 +35,7 @@ Modify the file `src/credentials/__init__.py` to give access to your EcoInvent d
 - `main.ipynb` is the notebook from which users can do their LCA.
 - `sheets` contains all tables describing the foreground. Enter your custom databases here.
 - `src` contains the custom python packages.
+
+# Contact
+- robin.dethienne@uclouvain.be
+- augustin.wattiez@uclouvain.be
