@@ -3,6 +3,8 @@
 > Breaking changes are to be expected in the future.
 # ECS-LCA
 This repository contains the framework used by the ECS group at ICTeam in UCLouvain.
+> Contact adresse: robin.dethienne@uclouvain.be, augustin.wattiez@uclouvain.be
+
 ![Figure representing the database and processing structure](./image/figure_notebook_structure.png)
 
 # Installation
