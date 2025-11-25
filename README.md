@@ -10,12 +10,23 @@ This repository contains the framework used by the ECS group at ICTeam in UCLouv
 Clone this repository.
 Dependencies installation will depend on your Python framework.
 
+We recommand you to use [uv](https://github.com/astral-sh/uv).
+
+## uv
+```
+uv sync requirements.txt --python 3.10
+uv run python -m ipykernel install --user --name=ECS-LCA
+uv run jupyter notebook main.ipynb
+```
+
+
 ## conda
 ```
-conda create -n ECS-LCA
+conda create -n ECS-LCA python=3.10
 conda activate ECS-LCA
 conda install --yes --file requirements.txt
-jupyter notebook main.ipynb
+pip install -r requirements.txt
+python -m jupyterlab main.ipynb
 ```
 ## pipenv
 ```
