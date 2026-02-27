@@ -14,7 +14,8 @@ We recommand you to use [uv](https://github.com/astral-sh/uv).
 
 ## uv
 ```
-uv sync requirements.txt --python 3.10
+uv venv --python 3.10
+uv pip install -r requirements.txt
 uv run python -m ipykernel install --user --name=ECS-LCA
 uv run jupyter notebook main.ipynb
 ```

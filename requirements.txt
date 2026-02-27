@@ -1,3 +1,4 @@
 lca-algebraic==1.2
+numpy<2
 ipykernel
 jupyter
