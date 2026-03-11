@@ -1,0 +1,42 @@
+custom_activity:
+  id: capacitor_smd_0603
+  name: Capacitor SMD 0603
+  description: >
+    Surface mounted ceramic capacitor 0603 format.
+  capacitor_value: 3nF
+  garbage: 83
+
+  output:
+    product: capacitor_smd_0603
+    amount: 1
+    unit: unit
+
+  inputs:
+
+    - id: ceramic_dielectric
+      amount:
+        parameter: mass_ceramic
+        typical: 0.002
+        unit: kg
+      maps_to:
+        name: ceramic tile production
+        location: RoW
+
+    - id: copper_electrode
+      amount:
+        parameter: mass_copper
+        typical: 0.0005
+        unit: kg
+        uncertainty:
+          distribution: normal
+          std: 0.00005
+      maps_to:
+        name: market for copper, cathode
+
+    - id: tantalum_trace
+      amount:
+        parameter: mass_tantalum
+        typical: 0.0001
+        unit: kg
+      maps_to:
+        name: market for tantalum concentrate, 30% Ta2O5

@@ -1,0 +1,20 @@
+custom_activity:
+  id: resistor_smd_0805
+  name: Resistor SMD 0805
+  description: >
+    Surface mounted thick-film resistor 0805 format.
+
+  output:
+    product: resistor_smd_0805
+    amount: 1
+    unit: unit
+
+  inputs:
+
+    - id: copper_termination
+      amount:
+        parameter: mass_copper
+        typical: 0.0003
+        unit: kg
+      maps_to:
+        name: market for copper, cathode

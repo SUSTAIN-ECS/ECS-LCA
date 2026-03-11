@@ -1,0 +1,27 @@
+project:
+  name: lca_electronics_model
+
+background:
+  database: ecoinvent
+  version: 3.9.1
+  system_model: cut-off
+  default_location: GLO
+
+foreground:
+  database: foreground
+
+uncertainty:
+  # If a parameter has no explicit distribution,
+  # assume it is deterministic
+  default_distribution: fixed
+
+  # If a parameter has no explicit default value,
+  # use this numeric fallback
+  default_value: 0
+
+  # Optional: global uncertainty enforcement rules
+  enforce_distribution: true
+
+units:
+  mass: kg
+  energy: MJ
