@@ -1,18 +1,16 @@
-custom_activity:
-  id: capacitor_smd_0603
+# yaml-language-server: $schema=../../../schemas/schema.yaml
+
+- id: capacitor_smd_0603
   name: Capacitor SMD 0603
   description: >
     Surface mounted ceramic capacitor 0603 format.
-  capacitor_value: 3nF
-  garbage: 83
-
+  c_capacitor_value: 3nF
+  c_garbage: 83
   output:
     product: capacitor_smd_0603
     amount: 1
     unit: unit
-
   inputs:
-
     - id: ceramic_dielectric
       amount:
         parameter: mass_ceramic
@@ -21,7 +19,6 @@ custom_activity:
       maps_to:
         name: ceramic tile production
         location: RoW
-
     - id: copper_electrode
       amount:
         parameter: mass_copper
@@ -32,7 +29,7 @@ custom_activity:
           std: 0.00005
       maps_to:
         name: market for copper, cathode
-
+        location: GLO
     - id: tantalum_trace
       amount:
         parameter: mass_tantalum
@@ -40,3 +37,14 @@ custom_activity:
         unit: kg
       maps_to:
         name: market for tantalum concentrate, 30% Ta2O5
+- name: My chip
+  id: my_chip
+  type: chip
+  data:
+    package:
+      area:
+        value: 8
+        unit: mm2
+      type: BGA
+      
+    

@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=../schemas/foreground.yaml
+
+- id: capa
+  c_lc_phase: prod
+  amount:
+    parameter: num_capa
+    typical: 1
+    unit: kg
+  maps_to:
+    name: capacitor_smd_0603
+
+- id: capa2
+  c_lc_phase: use
+  amount:
+    parameter: num_capa2
+    typical: 1
+    unit: kg
+  maps_to:
+    name: capacitor_smd_0603

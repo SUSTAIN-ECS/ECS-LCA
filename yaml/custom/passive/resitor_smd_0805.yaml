@@ -1,5 +1,5 @@
-custom_activity:
-  id: resistor_smd_0805
+# yaml-language-server: $schema=../../../schemas/schema.yaml
+- id: resistor_smd_0805
   name: Resistor SMD 0805
   description: >
     Surface mounted thick-film resistor 0805 format.
