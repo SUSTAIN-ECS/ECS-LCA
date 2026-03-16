@@ -3,7 +3,6 @@ import bw2io
 
 def setup_ecoinvent_database(eia):
     if any(f"ecoinvent-{eia.version}-{eia.system_model}" in key for key in bw.databases.keys()):
-        print(f"Initial setup already done for ecoinvent-{eia.version}-{eia.system_model}, skipping")
         return
     if  eia.version != None and eia.system_model != None:
         if eia.path != None:
