@@ -45,7 +45,7 @@ Modify the file `src/credentials/__init__.py` to give access to your EcoInvent d
 
 # Repo structure
 - `main.ipynb` is the notebook from which users can do their LCA.
-- `sheets` contains all tables describing the foreground. Enter your custom databases here.
+- `yaml` contains all data describing the foreground. Enter your custom databases in this folder, under custom.
 - `src` contains the custom python packages.
 
 # Contact

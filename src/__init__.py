@@ -1,0 +1,23 @@
+import brightway2 as bw
+import lca_algebraic as agb
+
+from src.ei_access import EI_Access
+from src.ei_access.setup import setup_ecoinvent_database
+from src.acts.custom_activities import generate_activities
+from src.utils.utils import export_all_db_as_enum, folder_changed
+
+def setup_project(custom_act_path, project_name, db):
+    ei_acc = EI_Access()
+    bw.projects.set_current(project_name) # Set the current project, can be any name
+    agb.resetDb(db)
+    agb.resetParams()   
+    agb.setForeground(db) #Create one database where all custom and modified activities will be added.
+    if 'biosphere3' not in bw.databases.keys():
+        #Content of bw2.setup() function but with overwrite=True
+        bw.create_default_biosphere3()
+        bw.create_default_lcia_methods(overwrite=True)
+        bw.create_core_migrations()
+    setup_ecoinvent_database(ei_acc)
+    generate_activities(custom_act_path, db)
+    if folder_changed("yaml/custom", "results/.snapshot"):
+        export_all_db_as_enum("schemas/all_activities_enum.yaml")
