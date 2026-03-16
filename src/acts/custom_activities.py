@@ -1,4 +1,6 @@
 from src.utils.utils import find_activity, get_param
+from src.smart_acts import smart_activity
+
 from pathlib import Path
 import lca_algebraic as agb
 import yaml
@@ -51,6 +53,9 @@ def create_custom_activities(activities, foreground_db):
         exchanges = {}
 
         for input_id, input_value in activity.get("inputs", []).items():
+            if "type" in input_value:
+                input_value = smart_activity(input_value)
+
             param = get_param(f"{activity['id']}_{input_id}", input_value)
 
             # Resolve mapping

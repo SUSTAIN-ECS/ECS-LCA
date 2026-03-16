@@ -1,0 +1,6 @@
+from src.smart_acts.chip import chip_smart_activity
+
+def smart_activity(activity):
+    if activity["type"] == "chip":
+        return chip_smart_activity(activity)
+    raise Exception("Activity type not supported")

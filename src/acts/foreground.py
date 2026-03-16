@@ -2,6 +2,7 @@ import lca_algebraic as agb
 from pathlib import Path
 import yaml as yml
 
+from src.smart_acts import smart_activity
 from src.utils.utils import get_param, find_activity
 
 def process_fground(fground, OS_database, name):
@@ -11,6 +12,9 @@ def process_fground(fground, OS_database, name):
         fground = fground["inputs"]
 
     for input_name, row in fground.items():
+
+        if "type" in row:
+            activity = smart_activity(row)
         new_activity_name = f"_{name}_{input_name}"
         param = get_param(new_activity_name, row)
 
