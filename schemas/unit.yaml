@@ -1,0 +1,19 @@
+enum:
+  - mg
+  - g
+  - kg
+  - mm
+  - cm
+  - m
+  - km
+  - mm²
+  - cm²
+  - m²
+  - km²
+  - mm³
+  - cm³
+  - m³
+  - km³
+  - Wh
+  - kWh
+  - unit

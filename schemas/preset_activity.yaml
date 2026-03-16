@@ -1,0 +1,6 @@
+oneOf:
+  - properties:
+      type:
+        const: chip
+      data:
+        $ref: ./chip.yaml

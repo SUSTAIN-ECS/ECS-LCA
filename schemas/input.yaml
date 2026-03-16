@@ -1,0 +1,41 @@
+required:
+  - act_name
+  - amount
+properties:
+  act_name:
+    $ref: ./all_activities_enum.yaml
+  location:
+    enum:
+      - RoW
+      - GLO
+      - BE
+      - IN
+  amount:
+    required:
+      - typical
+      - unit
+    additionalProperties: False
+    properties:
+      typical:
+        type: number
+      unit:
+        $ref: ./unit.yaml
+      uncertainty:
+        required:
+          - distribution
+        additionalProperties: False
+        properties:
+          distribution:
+            type: string
+            enum:
+              - normal
+              - lognormal
+              - triangular
+              - uniform
+          std:
+            type: number
+          min:
+            type: number
+          max:
+            type: number
+

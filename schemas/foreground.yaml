@@ -1,0 +1,20 @@
+type: object
+additionalProperties:
+  patternProperties:
+    "^c_": true
+  additionalProperties: False
+  properties:
+    act_name: true
+    location: true
+    amount: true
+    type: true
+    data: true
+  anyOf:
+    - $ref: ./input.yaml
+      type: false
+      data: false
+    - $ref: ./preset_activity.yaml
+      required:
+        - type
+        - data
+    

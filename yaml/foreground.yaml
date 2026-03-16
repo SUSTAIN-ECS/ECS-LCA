@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=../schemas/foreground.yaml
+
 GP6:
   act_name: gp6
   amount:

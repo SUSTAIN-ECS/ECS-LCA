@@ -1,0 +1,38 @@
+oneOf:
+  - required: [die]
+    properties:
+      die:
+        required: [area]
+  - required: [package]
+    properties:
+      package:
+        required:
+          - area
+          - type
+  
+properties:
+  die:
+    type: object
+    properties:
+      area:
+        properties:
+          value:
+            type: number
+          unit:
+            $ref: ./unit.yaml
+      technology:
+        type: string
+  package:
+    type: object
+    properties:
+      area:
+        properties:
+          value:
+            type: number
+          unit:
+            $ref: ./unit.yaml
+      type:
+        type: string
+        enum:
+          - BGA
+          - WLP 
