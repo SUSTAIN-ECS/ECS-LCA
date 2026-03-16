@@ -8,5 +8,5 @@ class EI_Access:
         self.path = None # Local folder with ecoinvent
 
         #Fill if you want to download the database
-        self.username = None
-        self.password = None
+        self.username = "lca-sst"
+        self.password = "lca@sst4UCLouvain"

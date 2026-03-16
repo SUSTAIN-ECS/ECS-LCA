@@ -1,40 +1,54 @@
 custom_activity:
-  id: connector_capacitor
-  name: Connector Capacitor 0603
+  id: capacitor_smd_0603_test2
+  name: Capacitor SMD 0603
   description: >
-    Connector activity: just aggregates inputs to a single output, no composition constraints.
+    Surface mounted ceramic capacitor 0603 format.
+  capacitor_value: 3nF
 
   outputs:
-    product: capacitor_smd_0603
+    product: capacitor_smd_0603_2
     amount: 1
     unit: unit
+
+  groups:
+    capacitor_mass2:
+      total:
+        typical: 0.003
+        sd: 0.00003
+        unit: kg
 
   inputs:
 
     - id: ceramic_dielectric
+      group: capacitor_mass2
       amount:
         parameter: mass_ceramic
         typical: 0.002
         unit: kg
+      uncertainty:
+        sd_share: np.nan
       maps_to:
         name: ceramic tile production
         location: RoW
 
     - id: copper_electrode
+      group: capacitor_mass2
       amount:
         parameter: mass_copper
-        typical: 0.0005
+        typical: 0.0009
         unit: kg
-        uncertainty:
-          distribution: normal
-          std: 0.00005
+      uncertainty:
+        sd_share: np.nan
       maps_to:
         name: market for copper, cathode
 
     - id: tantalum_trace
+      group: capacitor_mass2
       amount:
         parameter: mass_tantalum
         typical: 0.0001
         unit: kg
+      uncertainty:
+        sd_share: np.nan
       maps_to:
         name: market for tantalum concentrate, 30% Ta2O5

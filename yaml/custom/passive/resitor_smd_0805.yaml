@@ -4,7 +4,7 @@ custom_activity:
   description: >
     Surface mounted thick-film resistor 0805 format.
 
-  output:
+  outputs:
     product: resistor_smd_0805
     amount: 1
     unit: unit
