@@ -1,6 +1,13 @@
+import lca_algebraic as agb
+
 def die_area_pred(package_data):
-    #supposes package in mm2, should translate to be robost
+    # Return predicted die area in mm² based on package size. 
+
     p_area = package_data["area"]["value"]
+    
+    unit = package_data["area"]["unit"]
+    p_area *= (1 *  agb.unit_registry(unit)).to("mm²").magnitude
+
     if package_data["type"] == "BGA":
         return 0.822*p_area**0.73
     if package_data["type"] == "WLP":
