@@ -42,9 +42,8 @@ def get_param(name,row):
     sheet_name: the name of the excel sheet params_df
     """
     amount = row["amount"]
-
     param_type = get_param_type(amount["typical"]).strip().lower()
-    param_name = f"{name}_{amount['unit']}"
+    param_name = f"{name}_{amount['unit'].translate(str.maketrans({'²': '2','³': '3'}))}"
     try:
         if param_type == "float":
             unc = amount.get("uncertainty",{})
