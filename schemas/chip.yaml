@@ -35,4 +35,8 @@ properties:
         type: string
         enum:
           - BGA
-          - WLP 
+          - WLP
+          - SOP
+          - QFN
+          - DFN
+          - QFP

@@ -1,9 +1,16 @@
 def die_area_pred(package_data):
     #supposes package in mm2, should translate to be robost
+    p_area = package_data["area"]["value"]
     if package_data["type"] == "BGA":
-        return 0.822*package_data["area"]["value"]**0.73
+        return 0.822*p_area**0.73
     if package_data["type"] == "WLP":
-        return 0.759*package_data["area"]["value"]**0.99
+        return 0.759*p_area**0.99
+    if package_data["type"] == "SOP":
+        return 0.063*p_area**1.1
+    if package_data["type"] in ["QFN","DFN"]:
+        return 0.214*p_area**0.99
+    if package_data["type"] == "QFP":
+        return 0.724*p_area**0.6
     raise Exception("Package type not supported")
 
 def chip_smart_activity(activity):
