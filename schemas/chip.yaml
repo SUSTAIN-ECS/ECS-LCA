@@ -1,4 +1,4 @@
-oneOf:
+anyOf:
   - required: [die]
     properties:
       die:
