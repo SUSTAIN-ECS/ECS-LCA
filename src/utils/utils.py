@@ -134,3 +134,6 @@ def folder_changed(folder: str, state_file: str) -> bool:
         f.write(folder_hash)
 
     return prev_hash != folder_hash
+
+def unit_trans(base_unit, new_unit):
+    return (1 *  agb.unit_registry(base_unit)).to(new_unit).magnitude

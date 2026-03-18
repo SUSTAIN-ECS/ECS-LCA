@@ -16,6 +16,7 @@ inputs:
   Google Tensor Application Processor:
     type: chip
     data:
+      type: logic
       die:
         area:
           # die area reported in
@@ -27,6 +28,7 @@ inputs:
   Micron 12 GB LPDDR5 MT62F1536M64D8CH-031 WT:A:
     type: chip
     data:
+      type: memory
       die:
         area:
           #MT : Micron Technology
@@ -48,6 +50,7 @@ inputs:
   Kioxia 128 GB NAND Flash Memory:
     type: chip
     data:
+      type: memory
       die:
         area:
           # LINK: https://dl.acm.org/doi/pdf/10.1145/3706594.3727962
@@ -63,6 +66,7 @@ inputs:
   Cirrus Logic CS35L41B Audio Amplifier (1):
     type: chip
     data:
+      type: logic
       package:
         area:
           value: 13.81
@@ -71,6 +75,7 @@ inputs:
   Cirrus Logic CS40L25 Audio Amplifier Haptic:
     type: chip
     data:
+      type: logic
       package:
         area:
           value: 13.81
@@ -79,6 +84,7 @@ inputs:
   Samsung Exynos SM 5800 Supply Modulator (1):
     type: chip
     data:
+      type: logic
       package:
         area:
           value: 13.05
@@ -87,6 +93,7 @@ inputs:
   Samsung Exynos SM 5800 Supply Modulator (2):
     type: chip
     data:
+      type: logic
       package:
         area:
           value: 11.60
@@ -95,6 +102,7 @@ inputs:
   Samsung SHANNON 5511 RF Transceiver:
     type: chip
     data:
+      type: logic
       package:
         area:
           value: 91.13
@@ -103,6 +111,7 @@ inputs:
   Samsung SHANNON A5123 5G Modem:
     type: chip
     data:
+      type: logic
       package:
         area:
           value: 112.55
@@ -114,6 +123,7 @@ inputs:
   NXP PCA9468 Battery Charger IC:
     type: chip
     data:
+      type: logic
       package:
         area:
           value: 16.75
@@ -122,6 +132,7 @@ inputs:
   Maxim MAX20339EWB Surge protection IC:
     type: chip
     data:
+      type: logic
       package:
         area:
           value: 10.77
@@ -130,6 +141,7 @@ inputs:
   Maxim MAX77759A PMIC:
     type: chip
     data:
+      type: logic
       package:
         area:
           value: 30.60
@@ -138,6 +150,7 @@ inputs:
   STMicroelectronics MCU ST33J2M0:
     type: chip
     data:
+      type: logic
       package:
         area:
           value: 12.56
@@ -146,6 +159,7 @@ inputs:
   STMicroelectronics NFC Controller ST54K:
     type: chip
     data:
+      type: logic
       package:
         area:
           value: 18.69
@@ -154,6 +168,7 @@ inputs:
   Google H1D3M Titan M security processor:
     type: chip
     data:
+      type: logic
       package:
         area:
           value: 22.11
@@ -162,6 +177,7 @@ inputs:
   Cirrus Logic CS35L41B Audio Amplifier (2):
     type: chip
     data:
+      type: logic
       package:
         area:
           value: 11.11
@@ -170,6 +186,7 @@ inputs:
   Broadcom BCM47765 GNSS Receiver IC:
     type: chip
     data:
+      type: logic
       package:
         area:
           value: 18.00
@@ -178,6 +195,7 @@ inputs:
   bcm4389?:
     type: chip
     data:
+      type: logic
       package:
         area:
           value: 107.26
@@ -186,6 +204,7 @@ inputs:
   Samsung PMIC S2MPG11:
     type: chip
     data:
+      type: logic
       package:
         area:
           value: 48.60
@@ -194,6 +213,7 @@ inputs:
   Samsung PMIC S2MPG10:
     type: chip
     data:
+      type: logic
       package:
         area:
           value: 55.23
@@ -202,6 +222,7 @@ inputs:
   IDT P9412 Wireless Charing Receiver IC:
     type: chip
     data:
+      type: logic
       package:
         area:
           value: 22.83
@@ -210,6 +231,7 @@ inputs:
   Samsung Shannon 5311A PMIC:
     type: chip
     data:
+      type: logic
       package:
         area:
           value: 32.31
@@ -218,6 +240,7 @@ inputs:
   Skyworks SKY77652-31 PAM:
     type: chip
     data:
+      type: logic
       package:
         area:
           value: 24.25
@@ -226,6 +249,7 @@ inputs:
   Skyworks SKY53738 FEM (1):
     type: chip
     data:
+      type: logic
       package:
         area:
           value: 17.83
@@ -234,6 +258,7 @@ inputs:
   Skyworks SKY53738 FEM (2):
     type: chip
     data:
+      type: logic
       package:
         area:
           value: 20.5
@@ -242,6 +267,7 @@ inputs:
   Skyworks SKY53737 FEM:
     type: chip
     data:
+      type: logic
       package:
         area:
           value: 18.98
@@ -250,6 +276,7 @@ inputs:
   Skyworks SKY58260-11 FEM:
     type: chip
     data:
+      type: logic
       package:
         area:
           value: 46.02
@@ -258,6 +285,7 @@ inputs:
   Samsung Exynos SM 5800 Supply Modulator:
     type: chip
     data:
+      type: logic
       package:
         area:
           value: 12.08
@@ -266,6 +294,7 @@ inputs:
   Qorvo QM77080 FEM:
     type: chip
     data:
+      type: logic
       package:
         area:
           value: 75.94
@@ -274,6 +303,7 @@ inputs:
   Skyworks SKY53738 FEM (3):
     type: chip
     data:
+      type: logic
       package:
         area:
           value: 20.14

@@ -9,8 +9,14 @@ anyOf:
         required:
           - area
           - type
-  
+required:
+  - type
+
 properties:
+  type:
+    enum:
+      - memory
+      - logic
   die:
     type: object
     properties:
