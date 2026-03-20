@@ -49,7 +49,7 @@ def order_activities(acts):
 
 def create_custom_activities(activities, foreground_db):
     for activity in activities:
-        unit = activity["output"]["unit"]
+        unit = activity["output"]["amount"]["unit"]
         exchanges = {}
 
         for input_id, input_value in activity.get("inputs", []).items():

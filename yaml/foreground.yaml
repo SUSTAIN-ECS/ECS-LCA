@@ -3,14 +3,14 @@
 GP6:
   act_name: gp6
   amount:
-    typical: 1
+    value: 1
     unit: unit
 
 conso:
   act_name: market for electricity, low voltage
   location: BE
   amount:
-    typical: 10.2
+    value: 10.2
     unit: kWh
     uncertainty:
       distribution: normal

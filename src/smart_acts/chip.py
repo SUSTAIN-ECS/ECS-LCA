@@ -34,7 +34,7 @@ def chip_smart_activity(activity):
     
     activity["act_name"] = f"market for integrated circuit, {data['type']} type"
     activity["amount"]= {
-                "typical": die_area["value"] * unit_trans(die_area["unit"], "cm²") * f,
+                "value": die_area["value"] * unit_trans(die_area["unit"], "cm²") * f,
                 "unit": "kg"
             }
     return activity

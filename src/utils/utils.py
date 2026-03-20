@@ -42,19 +42,19 @@ def get_param(name,row):
     sheet_name: the name of the excel sheet params_df
     """
     amount = row["amount"]
-    param_type = get_param_type(amount["typical"]).strip().lower()
+    param_type = get_param_type(amount["value"]).strip().lower()
     param_name = f"{name}_{amount['unit'].translate(str.maketrans({'²': '2','³': '3'}))}"
     try:
         if param_type == "float":
             unc = amount.get("uncertainty",{})
 
             if "distribution" not in unc:
-                return agb.unit_registry.Quantity(amount["typical"], amount['unit'])
+                return agb.unit_registry.Quantity(amount["value"], amount['unit'])
 
             distrib = unc.get("distribution", "FIXED").upper()
             return agb.newFloatParam(
                 param_name,
-                default=amount["typical"],
+                default=amount["value"],
                 unit=amount["unit"],
                 min=unc.get("min"),
                 max=unc.get("max"),

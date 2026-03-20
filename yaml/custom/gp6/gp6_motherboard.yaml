@@ -2,15 +2,16 @@
 
 output:
   product: gp6_motherboard
-  amount: 1
-  unit: unit
+  amount:
+    value: 1
+    unit: unit
 
 inputs:
 
   pcb:
     act_name: market for printed wiring board, for surface mounting, Pb free surface
     amount:
-      typical: 22.6 #considers the full rectangle in which the pcb enters
+      value: 22.6 #considers the full rectangle in which the pcb enters
       unit: cm²
 
   Google Tensor Application Processor:

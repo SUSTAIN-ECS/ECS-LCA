@@ -21,22 +21,14 @@ properties:
     type: object
     properties:
       area:
-        properties:
-          value:
-            type: number
-          unit:
-            $ref: ./unit.yaml
+        $ref: ./amount.yaml
       technology:
         type: string
   package:
     type: object
     properties:
       area:
-        properties:
-          value:
-            type: number
-          unit:
-            $ref: ./unit.yaml
+        $ref: ./amount.yaml
       type:
         type: string
         enum:
