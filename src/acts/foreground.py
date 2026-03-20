@@ -2,41 +2,30 @@ import lca_algebraic as agb
 from pathlib import Path
 import yaml as yml
 
+from src.acts.custom_activities import input_to_activity
 from src.smart_acts import smart_activity
 from src.utils.utils import get_param, find_activity
 
-def process_fground(fground, OS_database, name):
+def process_fground(fground, foreground_db, name):
     ret = {}
 
     if "inputs" in fground:
         fground = fground["inputs"]
 
-    for input_name, row in fground.items():
+    for input_name, input_value in fground.items():
 
-        if "type" in row:
-            activity = smart_activity(row)
-        new_activity_name = f"_{name}_{input_name}"
-        param = get_param(new_activity_name, row)
-
-        location = row.get("location", "GLO")
-
-        activity = find_activity(row["act_name"],location,OS_database)
-
-        if activity is None:
-            print(f"Skipping creation of {new_activity_name} due to unresolved activity issues.")
-            continue
+        new_activity_name = f"_foreground_{input_name}"
+        activity, param = input_to_activity(new_activity_name, input_value, foreground_db)
 
         try:
-            exchanges = {activity: param}  # Define exchanges
-        except Exception as e:
-            print(f"Error in parameter expression for activity '{new_activity_name}': {e}")
-            continue
-
-        try:
-            act = agb.newActivity(OS_database, new_activity_name, "unit", exchanges=exchanges, act_id_name = new_activity_name)
-            for i in row:
+            act = agb.newActivity(foreground_db, 
+                                  new_activity_name,
+                                  "unit",
+                                  exchanges={activity:param},
+                                  act_id_name = new_activity_name)
+            for i in input_value:
                 if i[:2] == "c_":
-                    act.updateMeta(**{str(i): str(row[i])})
+                    act.updateMeta(**{str(i): str(input_value[i])})
 
             ret[act]=1
         except Exception as e:
