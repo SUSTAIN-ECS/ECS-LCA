@@ -1,13 +1,10 @@
 required:
   - product
   - amount
-  - unit
 additionalProperties: False
 properties:
   product:
     type: string
   amount:
-    type: number
-  unit:
-    $ref: ./unit.yaml 
+    $ref: ./amount.yaml
 
