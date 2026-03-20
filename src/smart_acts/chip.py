@@ -3,6 +3,7 @@ from src.utils.utils import unit_trans
 
 def die_area_pred(package_data):
     # Return predicted die area in mm² based on package size. 
+    # https://anncollin.github.io/DieAreaPrediction/
 
     p_area = package_data["area"]["value"] 
     p_area *= unit_trans(package_data["area"]["unit"], "mm²")
