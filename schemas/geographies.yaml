@@ -1,0 +1,542 @@
+enum:
+  - RME
+  - TN
+  - BG
+  - UN-EASIA
+  - GI
+  - RS
+  - IN-LD
+  - US-AL
+  - TR
+  - US-RFC
+  - RoE
+  - IN-TN
+  - US-NY
+  - IN-NL
+  - TG
+  - TJ
+  - KP
+  - GM
+  - US-NH
+  - AU
+  - US-WY
+  - RoW
+  - JP
+  - US-NJ
+  - PL
+  - XK
+  - US-ND
+  - CN-NX
+  - US-CT
+  - CN-HB
+  - BZ
+  - RLA
+  - RER w/o DE+NL+RU
+  - JO
+  - BR-MT
+  - GY
+  - CN-LN
+  - SC
+  - IN-GA
+  - GLO
+  - CN-SX
+  - Europe without Switzerland and Austria
+  - CA-YK
+  - IN-AS
+  - IN-AP
+  - RER w/o DE+NL+NO+RU
+  - UCTE without France
+  - Clipperton Island
+  - US-MT
+  - WEU
+  - TK
+  - ME
+  - AU-IOT
+  - US-SERC
+  - CN-GD
+  - Serranilla Bank
+  - US-MI
+  - UM
+  - UN-NAFRICA
+  - UA
+  - IN-MP
+  - Russia (Europe)
+  - KI
+  - TC
+  - BL
+  - US-AZ
+  - PH
+  - LU
+  - IN-KL
+  - CN-TJ
+  - BR-CE
+  - MN
+  - CA-NU
+  - CN-HN
+  - NL
+  - ID
+  - US-TRE
+  - IN-DN
+  - PT
+  - HU
+  - CR
+  - BI
+  - IN-PY
+  - IAI Area, South America
+  - BR-AL
+  - PG
+  - AZ
+  - KG
+  - LI
+  - CN-HE
+  - LC
+  - FO
+  - US-WV
+  - ZW
+  - IN-TR
+  - IAI Area, Africa
+  - AS
+  - SS
+  - BS
+  - BR-GO
+  - WF
+  - US-ID
+  - US-OK
+  - IR
+  - AG
+  - TV
+  - US-VA
+  - RER w/o DE+NL+NO
+  - US-MO
+  - IN-Western grid
+  - UN-SASIA
+  - CN-JL
+  - BA
+  - US-WA
+  - IN-ML
+  - EC
+  - BR-Mid-western grid
+  - IN-PB
+  - BR-ES
+  - BR
+  - HK
+  - US-WECC
+  - AW
+  - AM
+  - DE
+  - FR
+  - Spratly Islands
+  - UN-EAFRICA
+  - IN-UT
+  - US-SPP
+  - LY
+  - China w/o Inner Mongol
+  - IN-KA
+  - KR
+  - DJ
+  - FSU
+  - IN-MH
+  - US-VT
+  - YE
+  - BR-TO
+  - Europe without Austria
+  - EH
+  - BY
+  - ZM
+  - BH
+  - US-AK
+  - TL
+  - CK
+  - BM
+  - NE
+  - NF
+  - ZA
+  - GS
+  - AU-TAS
+  - OM
+  - SG
+  - CA-ON
+  - UN-WASIA
+  - TM
+  - CU
+  - LR
+  - BE
+  - CW
+  - IN-AN
+  - AE
+  - LS
+  - SK
+  - CA-QC
+  - Canary Islands
+  - FJ
+  - CN-GZ
+  - CA-NF
+  - IN-HR
+  - US-MN
+  - BB
+  - CN-NM
+  - LB
+  - GD
+  - GR
+  - US-KS
+  - France, including overseas territories
+  - CD
+  - CN-FJ
+  - MD
+  - GN
+  - Asia without China
+  - IAI Area, North America, without Quebec
+  - KM
+  - BR-PB
+  - US-SD
+  - CA
+  - SX
+  - SI
+  - PM
+  - US-IA
+  - UN-EUROPE
+  - MG
+  - RNA
+  - BR-AM
+  - BQ
+  - RE
+  - CENTREL
+  - US-NPCC
+  - CA-NB
+  - IL
+  - IN-GJ
+  - IN-OR
+  - RER w/o RU
+  - PE
+  - WS
+  - MZ
+  - AX
+  - ML
+  - RER w/o CH+DE
+  - UN-SAMERICA
+  - UN-OCEANIA
+  - UN-ASIA
+  - CY
+  - Dhekelia Base
+  - TZ
+  - BW
+  - KY
+  - SJ
+  - Canada without Alberta
+  - IN-CH
+  - AU-ACT
+  - KH
+  - SZ
+  - CN-HU
+  - UN-MICRONESIA
+  - JM
+  - CI
+  - US-ASCC
+  - Europe without Switzerland and France
+  - MX
+  - IN
+  - CS
+  - KZ
+  - Europe without Switzerland
+  - HN
+  - ET
+  - BR-RJ
+  - Cyprus No Mans Area
+  - MW
+  - US-KY
+  - IN-HP
+  - IN-Southern grid
+  - LA
+  - MA
+  - BR-SP
+  - RW
+  - Siachen Glacier
+  - CL
+  - US-PA
+  - DM
+  - IN-Northern grid
+  - IN-BR
+  - AU-SA
+  - CX
+  - GG
+  - UN-POLYNESIA
+  - AU-VIC
+  - GB
+  - IQ
+  - NAFTA
+  - BR-South-eastern grid
+  - Akrotiri
+  - AO
+  - MC
+  - BJ
+  - NZ
+  - PN
+  - BF
+  - MF
+  - TH
+  - DO
+  - CN-NCGC
+  - SAS
+  - US-GA
+  - US-TX
+  - PA
+  - UN-CAMERICA
+  - BR-BA
+  - IO
+  - BR-Southern grid
+  - AU-JBT
+  - IT
+  - VN
+  - CA-MB
+  - GU
+  - SE
+  - UN-CARIBBEAN
+  - CN-SD
+  - CA-SK
+  - AF
+  - MT
+  - FI
+  - CM
+  - Australia, including overseas territorie
+  - CC
+  - IS
+  - US-HICC
+  - GH
+  - MS
+  - FK
+  - North America without Quebec
+  - US-IN
+  - QA
+  - IN-RJ
+  - CN-JX
+  - CN-XJ
+  - BR-RR
+  - MV
+  - PS
+  - CN-ZJ
+  - LT
+  - CN-XZ
+  - BR-SC
+  - Bajo Nuevo
+  - SN
+  - IN-Islands
+  - US-FL
+  - IN-North-eastern grid
+  - NP
+  - US-RI
+  - GE
+  - MP
+  - US-MRO
+  - UN-MAFRICA
+  - CA-PE
+  - HT
+  - AT
+  - DK
+  - TD
+  - GW
+  - WECC
+  - UN-WAFRICA
+  - SD
+  - YT
+  - IN-CT
+  - CA-NS
+  - SB
+  - NA
+  - UN-SEUROPE
+  - AU-NSW
+  - MH
+  - RAF
+  - BR-Northern grid
+  - BR-RO
+  - VG
+  - Québec, HQ distribution network
+  - US-TN
+  - US-DE
+  - TT
+  - GT
+  - Russia (Asia)
+  - AU-QLD
+  - CN-SH
+  - AR
+  - BV
+  - GL
+  - SM
+  - VU
+  - US-CA
+  - US-NE
+  - LK
+  - TW
+  - GP
+  - IN-WB
+  - IN-JH
+  - CN-QH
+  - NORDEL
+  - NI
+  - NPCC
+  - MO
+  - IAI Area, North America
+  - GQ
+  - US-NM
+  - US-IL
+  - CN-SC
+  - SO
+  - SH
+  - UN-AMERICAS
+  - SY
+  - IAI Area, Russia and Eastern Europe
+  - CN-YN
+  - BR-AC
+  - CH
+  - IM
+  - IN-SK
+  - BR-MG
+  - RER w/o AT+BE+CH+DE+FR+IT
+  - CA-BC
+  - UN-AUSTRALIANZ
+  - BR-RN
+  - Scarborough Reef
+  - SV
+  - CN-SGCC
+  - GF
+  - VC
+  - IN-MZ
+  - US-SC
+  - CN-HA
+  - MM
+  - CN-HL
+  - BR-MA
+  - AL
+  - AU-WA
+  - Northern Cyprus
+  - SR
+  - CV
+  - ES
+  - CN-GS
+  - BR-PI
+  - DZ
+  - IN-UP
+  - BD
+  - JE
+  - BR-MS
+  - US-MA
+  - AI
+  - BR-DF
+  - EE
+  - RO
+  - UN-EEUROPE
+  - NG
+  - IAI Area, Asia, without China and GCC
+  - Europe without NORDEL (NCPA)
+  - US-NV
+  - AU-NT
+  - NC
+  - BR-PE
+  - CN
+  - US-ME
+  - IN-Eastern grid
+  - CN-GX
+  - IN-MN
+  - US-DC
+  - CG
+  - KN
+  - MRO
+  - NO
+  - MK
+  - Europe, without Russia and Türkiye
+  - US-NC
+  - BT
+  - IE
+  - UN-NEUROPE
+  - IN-DL
+  - LV
+  - SA
+  - CN-ECGC
+  - BR-PR
+  - UCTE without Germany
+  - BR-AP
+  - KE
+  - US-MD
+  - ST
+  - IAI Area, Western and Central Europe
+  - UCTE without Germany and France
+  - EG
+  - BO
+  - AQ
+  - US-OH
+  - BR-South-eastern/Mid-western grid
+  - CN-NECG
+  - US-PR
+  - US-HI
+  - IN-JK
+  - VE
+  - UY
+  - US-WI
+  - ENTSO-E
+  - US-FRCC
+  - Guantanamo Bay
+  - UCTE
+  - CN-CCG
+  - SL
+  - US-CO
+  - Coral Sea Islands
+  - CN-BJ
+  - HR
+  - HM
+  - NR
+  - CO
+  - Canada without Alberta and Quebec
+  - BR-North-eastern grid
+  - CN-SWG
+  - Canada without Quebec
+  - PW
+  - Central Asia
+  - GA
+  - US
+  - US-UT
+  - BN
+  - UZ
+  - UN-SEASIA
+  - UG
+  - IN-DD
+  - BR-PA
+  - TO
+  - MY
+  - AU-AC
+  - IN-AR
+  - AD
+  - MU
+  - CN-JS
+  - CN-CQ
+  - CN-SA
+  - MQ
+  - BALTSO
+  - CN-CSG
+  - PK
+  - CA-NT
+  - TF
+  - Somaliland
+  - IAI Area, Gulf Cooperation Council
+  - UN-MELANESIA
+  - KW
+  - PF
+  - CN-AH
+  - ER
+  - MR
+  - RAS
+  - RU
+  - VI
+  - US-MS
+  - US-OR
+  - US-LA
+  - FM
+  - CA-AB
+  - VA
+  - US-AR
+  - CZ
+  - RER
+  - CN-NWG
+  - CF
+  - NU
+  - BR-RS
+  - PY
+  - BR-SE

@@ -5,11 +5,7 @@ properties:
   act_name:
     $ref: ./all_activities_enum.yaml
   location:
-    enum:
-      - RoW
-      - GLO
-      - BE
-      - IN
+    $ref: ./geographies.yaml
   amount:
     required:
       - typical
