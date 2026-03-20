@@ -47,31 +47,36 @@ def order_activities(acts):
 
     return result
 
+def input_to_activity(param_name, input_value, db):
+    if "type" in input_value:
+        input_value = smart_activity(input_value)
+    
+    param = get_param(param_name, input_value)
+
+    # Resolve mapping
+    ei_name = input_value["act_name"]
+    location = input_value.get("location", "GLO")
+
+    # Find background activity
+    activity = find_activity(ei_name, location, db)
+
+    if activity is None:
+        raise ValueError(
+            f"Background activity not found: {ei_name} ({location})"
+        )
+    return activity, param
+
 def create_custom_activities(activities, foreground_db):
     for activity in activities:
         unit = activity["output"]["amount"]["unit"]
         exchanges = {}
 
-        for input_id, input_value in activity.get("inputs", []).items():
-            if "type" in input_value:
-                input_value = smart_activity(input_value)
+        for input_name, input_value in activity.get("inputs", []).items():
+            param_name = f"{activity['id']}_{input_name}"
 
-            param = get_param(f"{activity['id']}_{input_id}", input_value)
-
-            # Resolve mapping
-            ei_name = input_value["act_name"]
-            location = input_value.get("location", "GLO")
-
-            # Find background activity
-            ei_activity = find_activity(ei_name, location, foreground_db)
-
-            if ei_activity is None:
-                raise ValueError(
-                    f"Background activity not found: {ei_name} ({location})"
-                )
-
+            child_act, param = input_to_activity(param_name, input_value, foreground_db)
             #Need to do the get in case where multiple inputs link to the same activity
-            exchanges[ei_activity] =  exchanges.get(ei_activity,0) + param
+            exchanges[child_act] =  exchanges.get(child_act,0) + param
 
         # Create new custom activity
         agb.newActivity(
