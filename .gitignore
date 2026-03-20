@@ -3,6 +3,8 @@ results
 Pipfile
 Pipfile.lock
 
+yaml
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
