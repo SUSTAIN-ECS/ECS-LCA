@@ -7,12 +7,19 @@ additionalProperties:
     act_name: true
     location: true
     amount: true
+    composition: true
     type: true
     data: true
   anyOf:
     - $ref: ./input.yaml
       type: false
       data: false
+      composition: false
+    - $ref: ./composite_input.yaml
+      type: false
+      data: false
+      required:
+        - composition
     - $ref: ./preset_activity.yaml
       required:
         - type

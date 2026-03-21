@@ -1,3 +1,4 @@
+from src.acts.composite_activities import composite_activity
 from src.utils.utils import find_activity, get_param
 from src.smart_acts import smart_activity
 
@@ -50,6 +51,9 @@ def order_activities(acts):
 def input_to_activity(param_name, input_value, db):
     if "type" in input_value:
         input_value = smart_activity(input_value)
+
+    if "composition" in input_value:
+        return composite_activity(param_name, input_value, db)
     
     param = get_param(param_name, input_value)
 
