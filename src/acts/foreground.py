@@ -7,7 +7,7 @@ from src.smart_acts import smart_activity
 from src.utils.utils import get_param, find_activity
 
 def process_fground(fground, foreground_db, name):
-    ret = {}
+    ret, rep = {}, {}
 
     if "inputs" in fground:
         fground = fground["inputs"]
@@ -16,6 +16,11 @@ def process_fground(fground, foreground_db, name):
 
         new_activity_name = f"_{name}_{input_name}"
         activity, param = input_to_activity(new_activity_name, input_value, foreground_db)
+        
+        rep[new_activity_name] = {}
+        for i in input_value:
+            if i[:2] == "c_":
+                rep[new_activity_name][i[2:]] = input_value[i]
 
         try:
             act = agb.newActivity(foreground_db, 
@@ -23,21 +28,18 @@ def process_fground(fground, foreground_db, name):
                                   "unit",
                                   exchanges={activity:param},
                                   act_id_name = new_activity_name)
-            for i in input_value:
-                if i[:2] == "c_":
-                    act.updateMeta(**{str(i): str(input_value[i])})
-
             ret[act]=1
         except Exception as e:
             print(f"Error creating activity '{new_activity_name}': {e}")
-    return ret
+    return ret, rep
 
 def get_reference_flow(path, db):
 
     with open(path, "r") as f:
         fground = yml.safe_load(f)
 
-    exchanges_foreground = process_fground(fground, db, Path(path).stem)
+    exchanges_foreground, rep = process_fground(fground, db, Path(path).stem)
 
-    return agb.newActivity(db,f"act_{Path(path).stem}",  "unit", exchanges=exchanges_foreground) # Create the foreground
+    ref_flow = agb.newActivity(db,f"act_{Path(path).stem}",  "unit", exchanges=exchanges_foreground)
+    return ref_flow, rep
 
