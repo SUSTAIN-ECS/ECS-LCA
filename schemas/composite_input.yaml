@@ -1,0 +1,9 @@
+required:
+  - composition
+  - amount
+additionalProperties: False
+properties:
+  composition:
+    $ref: ./foreground.yaml
+  amount:
+    $ref: ./amount.yaml
