@@ -14,7 +14,7 @@ def process_fground(fground, foreground_db, name):
 
     for input_name, input_value in fground.items():
 
-        new_activity_name = f"_foreground_{input_name}"
+        new_activity_name = f"_{name}_{input_name}"
         activity, param = input_to_activity(new_activity_name, input_value, foreground_db)
 
         try:
@@ -39,5 +39,5 @@ def get_reference_flow(path, db):
 
     exchanges_foreground = process_fground(fground, db, Path(path).stem)
 
-    return agb.newActivity(db,f"act_{path}",  "unit", exchanges=exchanges_foreground) # Create the foreground
+    return agb.newActivity(db,f"act_{Path(path).stem}",  "unit", exchanges=exchanges_foreground) # Create the foreground
 
