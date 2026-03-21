@@ -6,15 +6,5 @@ properties:
   output:
     $ref: ./output.yaml
   inputs:
-    type: object
-    additionalProperties:
-      anyOf:
-        - $ref: ./input.yaml
-          properties:
-            type: false
-            data: false
-        - $ref: ./preset_activity.yaml
-          required:
-            - type
-            - data
+    $ref: ./foreground.yaml
           
