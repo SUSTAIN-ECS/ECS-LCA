@@ -48,6 +48,7 @@ def create_custom_activities(activities, foreground_db):
         act = agb.newActivity(
             foreground_db,
             activity['id'],
+            amount= activity["output"]["amount"]["value"],
             unit = activity["output"]["amount"]["unit"],
             exchanges={}
         )
