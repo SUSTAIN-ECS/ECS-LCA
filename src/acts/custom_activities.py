@@ -60,7 +60,7 @@ def add_all_exchanges(all_acts, foreground_db):
         exchanges = {}
 
         for input_name, input_value in input_data.items():
-            param_name = f"{act['name']}_{input_name}"
+            param_name = f"{act['name']}_{input_name}".replace(" ", "_")
 
             child_act, param = input_to_activity(param_name, input_value, foreground_db)
             #Need to do the get in case where multiple inputs link to the same activity
