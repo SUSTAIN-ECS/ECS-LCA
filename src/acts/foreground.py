@@ -15,22 +15,22 @@ def process_fground(fground, foreground_db, name):
     for input_name, input_value in fground.items():
 
         new_activity_name = f"_{name}_{input_name}"
-        activity, param = input_to_activity(new_activity_name, input_value, foreground_db)
         
         rep[new_activity_name] = {}
         for i in input_value:
             if i[:2] == "c_":
                 rep[new_activity_name][i[2:]] = input_value[i]
 
-        try:
-            act = agb.newActivity(foreground_db, 
-                                  new_activity_name,
-                                  "unit",
-                                  exchanges={activity:param},
-                                  act_id_name = new_activity_name)
-            ret[act]=1
-        except Exception as e:
-            print(f"Error creating activity '{new_activity_name}': {e}")
+        for activity, param in input_to_activity(new_activity_name, input_value, foreground_db):
+            try:
+                act = agb.newActivity(foreground_db, 
+                                    new_activity_name,
+                                    "unit",
+                                    exchanges={activity:param},
+                                    act_id_name = new_activity_name)
+                ret[act]=1
+            except Exception as e:
+                print(f"Error creating activity '{new_activity_name}': {e}")
     return ret, rep
 
 def get_reference_flow(path, db):

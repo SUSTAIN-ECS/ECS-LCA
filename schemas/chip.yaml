@@ -3,20 +3,15 @@ anyOf:
     properties:
       die:
         required: [area]
-  - required: [package]
-    properties:
+  - properties:
       package:
         required:
           - area
-          - type
+
 required:
-  - type
+  - package
 
 properties:
-  type:
-    enum:
-      - memory
-      - logic
   die:
     type: object
     properties:
@@ -24,8 +19,21 @@ properties:
         $ref: ./amount.yaml
       technology:
         type: string
+        enum:
+          - A14
+          - N2
+          - N3
+          - N5
+          - N7 EUV
+          - N7
+          - N10
+          - N14
+          - N20
+          - N28
   package:
     type: object
+    required:
+      - type
     properties:
       area:
         $ref: ./amount.yaml

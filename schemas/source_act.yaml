@@ -1,0 +1,7 @@
+required:
+  - act_name
+properties:
+  act_name:
+    $ref: ./all_activities_enum.yaml
+  location:
+    $ref: ./geographies.yaml

@@ -1,0 +1,14 @@
+type: object
+patternProperties:
+  "^c_": true
+additionalProperties: false
+properties:
+  source_act:
+    $ref: ./source_act.yaml
+  to_update:
+    additionalProperties:
+      amount:
+        $ref: ./amount.yaml
+  inputs:
+    $ref: ./foreground.yaml
+          

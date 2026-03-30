@@ -17,14 +17,15 @@ inputs:
   Google Tensor Application Processor:
     type: chip
     data:
-      type: logic
       die:
         area:
           # die area reported in
           # LINK: https://www.techinsights.com/blog/teardown/google-pixel-6-pro-teardown
           value: 108.26
           unit: mm²
-        technology: 5nm
+        technology: N5
+      package:
+        type: BGA
 
   Micron 12 GB LPDDR5 MT62F1536M64D8CH-031 WT:A:
     type: chip
@@ -47,6 +48,8 @@ inputs:
           # scale this to 96Gb
           value: 224.82
           unit: mm²
+      package:
+        type: BGA
 
   Kioxia 128 GB NAND Flash Memory:
     type: chip
@@ -60,6 +63,8 @@ inputs:
           value: 100.91
           unit: mm²
         technology: NAND BICS 162 layers
+      package:
+        type: BGA
   # All chip size have been measured on photos obtained on
   # LINK: https://www.techinsights.com/blog/teardown/google-pixel-6-pro-teardown
   # Scale was obtained based on the physical motherboard extracted from a GP6
@@ -120,7 +125,7 @@ inputs:
         type: BGA
       die:
         # LINK: https://semiconductor.samsung.com/processor/modem/exynos-modem-5123/
-        technology: 7nm EUV
+        technology: N7 EUV
   NXP PCA9468 Battery Charger IC:
     type: chip
     data:

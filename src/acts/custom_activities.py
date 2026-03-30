@@ -21,7 +21,8 @@ def load_custom_activities(yaml_path):
 
 def input_to_activity(param_name, input_value, db):
     if "type" in input_value:
-        input_value = smart_activity(input_value)
+        smart_one = smart_activity(input_value)
+        return [input_to_activity(f"{param_name}_{k}", inp, db)[0] for k, inp in smart_one.items()]
 
     if "composition" in input_value:
         return composite_activity(param_name, input_value, db)
@@ -39,21 +40,30 @@ def input_to_activity(param_name, input_value, db):
         raise ValueError(
             f"Background activity not found: {ei_name} ({location})"
         )
-    return activity, param
+    return [(activity, param)]
 
 def create_custom_activities(activities, foreground_db):
-    ret = []
+    inputs, updates = [],[]
     for activity in activities:
-        # Create new custom activity
-        act = agb.newActivity(
-            foreground_db,
-            activity['id'],
-            amount= activity["output"]["amount"]["value"],
-            unit = activity["output"]["amount"]["unit"],
-            exchanges={}
-        )
-        ret.append((act,activity.get("inputs", [])))
-    return ret
+        if "source_act" in activity:
+            to_copy = find_activity(
+                activity["source_act"]["act_name"],
+                activity["source_act"]["location"],
+                foreground_db
+            )
+            act = agb.activity.copyActivity(foreground_db, to_copy, code= activity['id'])
+        else:
+            # Create new custom activity
+            act = agb.newActivity(
+                foreground_db,
+                activity['id'],
+                amount= activity["output"]["amount"]["value"],
+                unit = activity["output"]["amount"]["unit"],
+                exchanges={}
+            )
+        inputs.append((act,activity.get("inputs", {})))
+        updates.append((act,activity.get("to_update", {})))
+    return inputs, updates
 
 def add_all_exchanges(all_acts, foreground_db):
     for act, input_data in all_acts:
@@ -62,13 +72,26 @@ def add_all_exchanges(all_acts, foreground_db):
         for input_name, input_value in input_data.items():
             param_name = f"{act['name']}_{input_name}".replace(" ", "_")
 
-            child_act, param = input_to_activity(param_name, input_value, foreground_db)
-            #Need to do the get in case where multiple inputs link to the same activity
-            exchanges[child_act] =  exchanges.get(child_act,0) + param
+            for child_act, param in input_to_activity(param_name, input_value, foreground_db):
+                #Need to do the get in case where multiple inputs link to the same activity
+                exchanges[child_act] =  exchanges.get(child_act,0) + param
 
         act.addExchanges(exchanges)
 
+def update_all_exchanges(all_acts, foreground_db):
+    for act, update_data in all_acts:
+        exchanges = {}
+        for ex_name, ex_value in update_data.items():
+            param_name = f"{act['name']}_{ex_name}".replace(" ", "_")
+
+            param = get_param(param_name, ex_value)
+            #Need to do the get in case where multiple inputs link to the same activity
+            exchanges[ex_name] =  param
+
+        act.updateExchanges(exchanges)
+
 def generate_activities(path, db):
     custom_activities = load_custom_activities(path)
-    acts = create_custom_activities(custom_activities, foreground_db=db)
-    add_all_exchanges(acts, foreground_db=db)
+    inputs, updates = create_custom_activities(custom_activities, foreground_db=db)
+    add_all_exchanges(inputs, foreground_db=db)
+    update_all_exchanges(updates, foreground_db=db)
