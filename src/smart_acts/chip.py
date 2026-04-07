@@ -28,11 +28,16 @@ def pack_weight_pred(data):
     # waiting for more complete and precise measurements
 
     param_pack_weight = {
-        "BGA": 3
+        "BGA": 2.93,
+        "WLP": 1.11,
+        "DFN": 4.07,
+        "QFN": 4.07,
+        "SOP": 5.60,
+        "QFP": 4.49,
     }
 
-    d_area = data["die"]["area"]["value"] 
-    d_area *= unit_trans(data["die"]["area"]["unit"], "mm²")
+    d_area = data["package"]["area"]["value"] 
+    d_area *= unit_trans(data["package"]["area"]["unit"], "mm²")
     p_type = data['package']['type']
 
     if p_type not in param_pack_weight:
