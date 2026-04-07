@@ -12,14 +12,18 @@ Dependencies installation will depend on your Python framework.
 
 We recommand you to use [uv](https://github.com/astral-sh/uv).
 
+`manage_database` is an interactive script will ask you for how you wanna get ecoinvent.
+It also allows you to change the version or model of the database.
+
+
 ## uv
 ```
 uv venv --python 3.10
 uv pip install -r requirements.txt
+./scripts/manage_database.py
 uv run python -m ipykernel install --user --name=ECS-LCA
 uv run jupyter notebook main.ipynb
 ```
-
 
 ## conda
 ```
@@ -27,21 +31,16 @@ conda create -n ECS-LCA python=3.10
 conda activate ECS-LCA
 conda install --yes --file requirements.txt
 pip install -r requirements.txt
+python -m ./scripts/manage_database.py
 python -m jupyterlab main.ipynb
 ```
 ## pipenv
 ```
 pipenv install -r requirements.txt --python 3.10
 pipenv run python -m ipykernel install --user --name=ECS-LCA
+pipenv run python -m ./scripts/manage_database.py
 pipenv run jupyter notebook main.ipynb
 ```
-
-# EcoInvent
-> [!WARNING]  
-> Forgetting to give an access to EcoInvent will lead to errors.
-
-Modify the file `src/credentials/__init__.py` to give access to your EcoInvent database. Either give the path to your local version of the database with its name or give your credentials to download it.
-
 
 # Repo structure
 - `main.ipynb` is the notebook from which users can do their LCA.

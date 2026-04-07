@@ -4,15 +4,15 @@ import bw2io
 def setup_ecoinvent_database(eia):
     if any(f"ecoinvent-{eia.version}-{eia.system_model}" in key for key in bw.databases.keys()):
         return
-    if  eia.version != None and eia.system_model != None:
-        if eia.path != None:
+    if  eia.version != "None" and eia.system_model != "None":
+        if eia.path != "None":
             eicut = bw.SingleOutputEcospold2Importer(eia.path, f"ecoinvent-{eia.version}-{eia.system_model}")
             eicut.apply_strategies()
             eicut.statistics()
             eicut.write_database()    
             return
 
-        if eia.username != None and eia.password:
+        if eia.username != "None" and eia.password:
             # Download the dabase    
             bw2io.import_ecoinvent_release(version = eia.version,
                                         system_model = eia.system_model,
