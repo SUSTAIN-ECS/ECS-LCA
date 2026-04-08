@@ -12,6 +12,8 @@ required:
   - package
 
 properties:
+  amount:
+    type: number
   die:
     type: object
     properties:
@@ -30,6 +32,13 @@ properties:
           - N14
           - N20
           - N28
+          - N45
+          - N65
+          - N90
+          - N130
+          - N180
+          - N250
+          - N350
   package:
     type: object
     required:

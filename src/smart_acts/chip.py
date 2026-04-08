@@ -47,9 +47,9 @@ def pack_weight_pred(data):
 
 def waf_elec_int(data):
     # Based on
-    # Boakes, Lizzie, et al. "Cradle-to-gate life cycle assessment of CMOS logic technologies." 2023
     # returns factor in kWh/cm² of wafer
     param_type_int = {
+        # Boakes, Lizzie, et al. "Cradle-to-gate life cycle assessment of CMOS logic technologies." 2023
         "A14": 4.10,
         "N2": 3.75,
         "N3": 3.77,
@@ -59,7 +59,16 @@ def waf_elec_int(data):
         "N10": 2.09,
         "N14": 1.83,
         "N20": 1.73,
-        "N28": 1.56
+        "N28": 1.56,
+        # Boyd, S. B. (2011). Life-cycle assessment of semiconductors. Springer Science & Business Media.
+        "N45": 1.4 / 1.11,
+        "N65": 1.5 / 1.4,
+        "N90": 1.5 / 1.4,
+        "N130": 1.5 / 1.4,
+        "N180": 1.6 / 1.25,
+        "N250": 1.6 / 1.5,
+        "N350": 1.8 / 1.96,
+
     }
 
     if "technology" not in data["die"]:
@@ -89,10 +98,12 @@ def chip_smart_activity(activity):
         data["package"] = data.get("package", {})
         data["package"]["weight"] = pack_weight
 
+    n_chips = data.get("amount", 1)
+
     wafer_activity = {}
     wafer_activity["act_name"] = f"mod_waf"
     wafer_activity["amount"]= {
-        "value": die_area["value"],
+        "value": die_area["value"] * n_chips,
         "unit": die_area["unit"]
         }
     ret["wafer"] = wafer_activity
@@ -100,7 +111,7 @@ def chip_smart_activity(activity):
     package_activity = {}
     package_activity["act_name"] = f"market_circ_logic_no_waf"
     package_activity["amount"]= {
-        "value": pack_weight["value"],
+        "value": pack_weight["value"] * n_chips,
         "unit": pack_weight["unit"]
         }
     ret["package"] = package_activity
@@ -108,7 +119,7 @@ def chip_smart_activity(activity):
     elec_activity = {}
     elec_activity["act_name"] = f"market group for electricity, medium voltage"
     elec_activity["amount"]= {
-        "value": die_area["value"] * unit_trans(die_area["unit"], "cm²") * waf_elec_int(data),
+        "value": die_area["value"] * unit_trans(die_area["unit"], "cm²") * waf_elec_int(data) * n_chips,
         "unit": "kWh"
         }
     ret["elec"] = elec_activity
