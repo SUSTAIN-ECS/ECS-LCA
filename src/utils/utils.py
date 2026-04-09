@@ -39,7 +39,15 @@ def get_param(name,amount):
         amount MUST have a value and a unit field
     """
     param_type = get_param_type(amount["value"]).strip().lower()
-    param_name = f"{name}_{amount['unit'].translate(str.maketrans({'²': '2','³': '3'}))}"
+    param_name = f"{name}_{amount['unit']}"
+    param_name = param_name.translate(str.maketrans(
+        {
+            '²': '2',
+            '³': '3',
+            '-': '_',
+            ' ': '_'
+        }
+    ))
     try:
         if param_type == "float":
             unc = amount.get("uncertainty",{})

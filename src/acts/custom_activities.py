@@ -81,7 +81,7 @@ def update_all_exchanges(all_acts, foreground_db):
     for act, update_data in all_acts:
         exchanges = {}
         for ex_name, ex_value in update_data.items():
-            param_name = f"{act['name']}_{ex_name}".replace(" ", "_")
+            param_name = f"{act['name']}_{ex_name}"
 
             param = get_param(param_name, ex_value["amount"])
             #Need to do the get in case where multiple inputs link to the same activity
