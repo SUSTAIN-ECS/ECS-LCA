@@ -21,8 +21,7 @@ def load_custom_activities(yaml_path):
 
 def input_to_activity(param_name, input_value, db):
     if "type" in input_value:
-        smart_one = smart_activity(input_value)
-        return [input_to_activity(f"{param_name}_{k}", inp, db)[0] for k, inp in smart_one.items()]
+        return smart_activity(input_value, param_name, db)
 
     if "composition" in input_value:
         return composite_activity(param_name, input_value, db)

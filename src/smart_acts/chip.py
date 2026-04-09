@@ -1,8 +1,9 @@
 import lca_algebraic as agb
-from src.utils.utils import unit_trans
+import sympy
+from src.utils.utils import find_activity, get_param, unit_trans
 
-def die_area_pred(package_data):
-    # Return predicted die area in mm² based on package size. 
+def die_area_pred(package_data, p_area):
+    # Return predicted die area in mm² based on package size.
     # https://anncollin.github.io/DieAreaPrediction/
 
     param_die_pred = {
@@ -14,16 +15,16 @@ def die_area_pred(package_data):
         "QFP": (0.724, 0.6)
     }
 
-    p_area = package_data["area"]["value"] 
-    p_area *= unit_trans(package_data["area"]["unit"], "mm²")
-    
     if package_data["type"] not in param_die_pred:
         raise Exception(f"Package type {package_data['type']} not supported")
 
     a, beta = param_die_pred[package_data["type"]]
-    return a*p_area**beta
 
-def pack_weight_pred(data):
+    result = a * p_area.to("mm²")**beta
+
+    return agb.unit_registry("mm²") * result.magnitude
+
+def pack_weight_pred(data, d_area):
     # Temporary factor from Augustin Wattiez based on OSSDA dataset
     # waiting for more complete and precise measurements
 
@@ -36,16 +37,15 @@ def pack_weight_pred(data):
         "QFP": 4.49,
     }
 
-    d_area = data["package"]["area"]["value"] 
-    d_area *= unit_trans(data["package"]["area"]["unit"], "mm²")
     p_type = data['package']['type']
 
     if p_type not in param_pack_weight:
         raise Exception(f"Package type {p_type} not supported")
 
-    return d_area * param_pack_weight[p_type]
+    a_t_w = param_pack_weight[p_type] * agb.unit_registry("mg/mm²")
+    return d_area * a_t_w
 
-def waf_elec_int(data):
+def waf_elec_int(d_tech):
     # Based on
     # returns factor in kWh/cm² of wafer
     param_type_int = {
@@ -71,57 +71,46 @@ def waf_elec_int(data):
 
     }
 
-    if "technology" not in data["die"]:
-        return 2.76 #Ecoinvent default value
+    if d_tech == None:
+        return 2.76 * agb.unit_registry("kWh/cm²")#Ecoinvent default value
 
-    d_tech = data["die"]["technology"]
     if d_tech not in param_type_int:
-        print(f"Package type {d_tech} not supported, using default Ecoinvent value")
-        return 2.76
+        print(f"Technology node {d_tech} not supported, using default Ecoinvent value")
+        return 2.76 * agb.unit_registry("kWh/cm²")
 
-    return param_type_int[d_tech]
+    return param_type_int[d_tech] * agb.unit_registry("kWh/cm²")
 
-def chip_smart_activity(activity):
+def waf_elec(data, d_area):
+    return d_area * waf_elec_int(data.get("die",{}).get("technology"))
+
+def chip_smart_activity(activity, param_name, db):
     data = activity["data"]
-    ret = {}
+    ret = []
 
     die_area = data.get("die", {}).get("area", None)
     pack_weight = data.get("package", {}).get("weight", None)
+    pack_area = get_param(f"{param_name}_pack_area", data.get("package", {}).get("area", None))
 
-    if die_area == None:
-        die_area = {"value": die_area_pred(data.get("package", None)), "unit": "mm²"}
-        data["die"] = data.get("die", {})
-        data["die"]["area"] = die_area
+    if die_area != None:
+        die_area = get_param(f"{param_name}_die_area", die_area)
+    else:
+        die_area = die_area_pred(data["package"], pack_area)
 
-    if pack_weight == None:
-        pack_weight =  {"value": pack_weight_pred(data), "unit": "mg"}
-        data["package"] = data.get("package", {})
-        data["package"]["weight"] = pack_weight
+    if pack_weight != None:
+        pack_weight = get_param(f"{param_name}_pack_weight", pack_weight)
+    else:
+        pack_weight = pack_weight_pred(data, die_area)
+
+    waffer_elec = waf_elec(data, die_area)
 
     n_chips = data.get("amount", 1)
 
-    wafer_activity = {}
-    wafer_activity["act_name"] = f"mod_waf"
-    wafer_activity["amount"]= {
-        "value": die_area["value"] * n_chips,
-        "unit": die_area["unit"]
-        }
-    ret["wafer"] = wafer_activity
+    ret.append((find_activity("mod_waf", "GLO", db), die_area*n_chips))
 
-    package_activity = {}
-    package_activity["act_name"] = f"market_circ_logic_no_waf"
-    package_activity["amount"]= {
-        "value": pack_weight["value"] * n_chips,
-        "unit": pack_weight["unit"]
-        }
-    ret["package"] = package_activity
 
-    elec_activity = {}
-    elec_activity["act_name"] = f"market group for electricity, medium voltage"
-    elec_activity["amount"]= {
-        "value": die_area["value"] * unit_trans(die_area["unit"], "cm²") * waf_elec_int(data) * n_chips,
-        "unit": "kWh"
-        }
-    ret["elec"] = elec_activity
+    ret.append((find_activity("market_circ_logic_no_waf", "GLO", db), pack_weight*n_chips))
 
-    return ret
+
+    ret.append((find_activity("market group for electricity, medium voltage", "GLO", db), waffer_elec*n_chips))
+
+    return ret #Should be a list of (,param)
