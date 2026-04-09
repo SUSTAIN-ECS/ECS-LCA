@@ -27,7 +27,7 @@ def input_to_activity(param_name, input_value, db):
     if "composition" in input_value:
         return composite_activity(param_name, input_value, db)
     
-    param = get_param(param_name, input_value)
+    param = get_param(param_name, input_value["amount"])
 
     # Resolve mapping
     ei_name = input_value["act_name"]
@@ -84,7 +84,7 @@ def update_all_exchanges(all_acts, foreground_db):
         for ex_name, ex_value in update_data.items():
             param_name = f"{act['name']}_{ex_name}".replace(" ", "_")
 
-            param = get_param(param_name, ex_value)
+            param = get_param(param_name, ex_value["amount"])
             #Need to do the get in case where multiple inputs link to the same activity
             exchanges[ex_name] =  param
 

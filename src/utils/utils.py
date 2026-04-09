@@ -33,7 +33,7 @@ def get_param_type(value):
     else:
         raise ValueError(f"Unsupported type: {typenum_capa(value)}")
 
-def get_param(name,row):
+def get_param(name,amount):
     """
     Create the parameters in the lca algebraic framework for one of the excel sheet.
 
@@ -41,7 +41,6 @@ def get_param(name,row):
     parameter_registryMa théorie c'est: the register of parameter
     sheet_name: the name of the excel sheet params_df
     """
-    amount = row["amount"]
     param_type = get_param_type(amount["value"]).strip().lower()
     param_name = f"{name}_{amount['unit'].translate(str.maketrans({'²': '2','³': '3'}))}"
     try:
@@ -60,26 +59,6 @@ def get_param(name,row):
                 max=unc.get("max"),
                 std=unc.get("std"),
                 distrib=getattr(agb.DistributionType, distrib, None),
-                description=row.get("Description"),
-                label=row.get("Label")
-            )
-        elif param_type == "bool":
-            return agb.newBoolParam(
-                param_name,
-                default=row["output"]["value"]
-            )
-        elif param_type == "enum":
-            values = eval(row["Values"]) if isinstance(row["Values"], str) else row["Values"]
-            weights = eval(row["Weights"]) if isinstance(row["Weights"], str) else None
-
-            if weights:
-                values = {k: v for k, v in zip(values, weights)}
-
-            return agb.newEnumParam(
-                param_name,
-                values=values,
-                default=row["Default"],
-                description=row.get("Description")
             )
         else:
             raise ValueError(f"Unsupported parameter type: {param_type}")
