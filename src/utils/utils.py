@@ -35,11 +35,8 @@ def get_param_type(value):
 
 def get_param(name,amount):
     """
-    Create the parameters in the lca algebraic framework for one of the excel sheet.
-
-    params_df: the dataframe that has been created for one excel sheet
-    parameter_registryMa théorie c'est: the register of parameter
-    sheet_name: the name of the excel sheet params_df
+        Returns the parameter for the given amount
+        amount MUST have a value and a unit field
     """
     param_type = get_param_type(amount["value"]).strip().lower()
     param_name = f"{name}_{amount['unit'].translate(str.maketrans({'²': '2','³': '3'}))}"
