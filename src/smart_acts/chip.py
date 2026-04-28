@@ -1,5 +1,6 @@
 import lca_algebraic as agb
 import sympy
+from functools import lru_cache
 from src.utils.utils import find_activity, get_param, unit_trans
 
 def die_area_pred(package_data, p_area):
@@ -83,9 +84,16 @@ def waf_elec_int(d_tech):
 def waf_elec(data, d_area):
     return d_area * waf_elec_int(data.get("die",{}).get("technology"))
 
+@lru_cache(maxsize=1)
+def get_acts():
+    return (
+        find_activity("mod_waf", "GLO", "OS database"),
+        find_activity("market_circ_logic_no_waf", "GLO", "OS database"),
+        agb.findTechAct("market group for electricity, medium voltage", "GLO")
+    )
+
 def chip_smart_activity(activity, param_name, db):
     data = activity["data"]
-    ret = []
 
     die_area = data.get("die", {}).get("area", None)
     pack_weight = data.get("package", {}).get("weight", None)
@@ -105,12 +113,10 @@ def chip_smart_activity(activity, param_name, db):
 
     n_chips = data.get("amount", 1)
 
-    ret.append((find_activity("mod_waf", "GLO", db), die_area*n_chips))
+    acts = get_acts()
 
+    a1 = (acts[0], die_area*n_chips)
+    a2 = (acts[1], pack_weight*n_chips)
+    a3 = (acts[2], waffer_elec*n_chips)
 
-    ret.append((find_activity("market_circ_logic_no_waf", "GLO", db), pack_weight*n_chips))
-
-
-    ret.append((find_activity("market group for electricity, medium voltage", "GLO", db), waffer_elec*n_chips))
-
-    return ret #Should be a list of (,param)
+    return [a1, a2, a3]
