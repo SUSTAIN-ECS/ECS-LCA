@@ -3,23 +3,22 @@ import brightway2 as bw
 import yaml as yml
 import os
 import hashlib
+from functools import lru_cache
 
+@lru_cache(maxsize=None)
 def find_activity(activity_name, location, custom_db):
-    """
-    Finds activities in the ecoinvent database or in the foreground DB.
-    The latter contains either (1) custom activities or (2) modified ecoinvent activities.
-    """
-
     try:
         return agb.findActivity(activity_name, db_name=custom_db)
-    except Exception as e:
-        pass
-    try:
-        return agb.findBioAct(activity_name)
-    except Exception as e:
+    except Exception:
         pass
 
-    return agb.findTechAct(activity_name, loc=location)
+    try:
+        return agb.findTechAct(activity_name, loc=location)
+    except Exception:
+        pass
+
+    return agb.findBioAct(activity_name)
+
 
 def get_param_type(value):
     if isinstance(value, bool):
